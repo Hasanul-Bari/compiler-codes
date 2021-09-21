@@ -15,30 +15,32 @@ int main()
     }
 
 
-    int characters=0,others=0;
+    int characters=0,whitespace=0;
 
 
     char c=fgetc(f1);
 
     while(c!=EOF)
     {
-        if(c=='\n' || c==' ')
+        if(isspace(c))
         {
-            others++;
+            whitespace++;
         }
         else
         {
             characters++;
+            //cout<<characters<<" "<<c<<endl;
         }
 
         c=fgetc(f1);
 
     }
+    fclose(f1);
 
     //cout<<characters<<" "<<others<<endl;
 
-    cout<<"number of characters in 'input.txt' file is (without spaces and newline) : "<<characters<<endl;
-    cout<<"number of characters in 'input.txt' file is (with spaces and newline) : "<<characters+others<<endl;
+    cout<<"number of characters in 'input.txt' file is (without whitespace) : "<<characters<<endl;
+    cout<<"number of characters in 'input.txt' file is (with whitespace) : "<<characters+whitespace<<endl;
 
 
     return 0;
