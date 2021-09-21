@@ -4,9 +4,13 @@ using namespace std;
 
 int main()
 {
+    char fileName [100];
+    cout<<"Enter the name of the file(with extension) to be read : ";
+    cin>>fileName;
+
     FILE *f1, *f2;
 
-    f1=fopen("text.txt","r");
+    f1=fopen(fileName,"r");
     f2=fopen("output.txt","w");
 
 
@@ -14,6 +18,10 @@ int main()
     {
         cout<<"Failed to open file 'input.txt'"<<endl;
         return -1;
+    }
+    else
+    {
+        cout<<fileName<<" file opened successfully"<<endl;
     }
 
 
@@ -48,7 +56,6 @@ int main()
 
     //cout<<tabs<<" "<<newlines<<endl;
 
-    cout<<"Read from 'input.txt' : success"<<endl;
     cout<<"Delete existing tabs and newline : success"<<endl;
     cout<<"write the output to 'output.txt' : success"<<endl<<endl;
 
