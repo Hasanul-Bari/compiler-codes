@@ -4,14 +4,23 @@ using namespace std;
 
 int main()
 {
+
+    string fileName;
+    cout<<"Enter the name of the file(with extension) to be read : ";
+    cin>>fileName;
+
     fstream fin;
 
-    fin.open("input.txt");
+    fin.open(fileName);
 
     if(fin.fail())
     {
         cout<<"Failed to open file 'input.txt'"<<endl;
         return -1;
+    }
+    else
+    {
+        cout<<fileName<<" file opened successfully"<<endl;
     }
 
     string line;
@@ -23,7 +32,7 @@ int main()
     }
     fin.close();
 
-    cout<<"number of lines in 'input.txt' file is : "<<lineCount<<endl;
+    cout<<"number of lines in "<<fileName<<" file is : "<<lineCount<<endl;
 
     return 0;
 
