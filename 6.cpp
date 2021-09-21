@@ -3,10 +3,14 @@ using namespace std;
 
 int main()
 {
+    string fileName;
+    cout<<"Enter the name of the file(with extension) to be read : ";
+    cin>>fileName;
+
     ifstream fin;
     ofstream fout;
 
-    fin.open("input.txt");
+    fin.open(fileName);
     fout.open("output.txt");
 
     if(fin.fail())
@@ -14,6 +18,11 @@ int main()
         cout<<"Failed to open file 'input.txt'"<<endl;
         return -1;
     }
+    else
+    {
+        cout<<fileName<<" file opened successfully"<<endl;
+    }
+
 
 
 
@@ -77,7 +86,7 @@ int main()
     }
     fin.close();
 
-    cout<<"Read from 'input.txt' : success"<<endl;
+
     cout<<"Delete existing comments : success"<<endl;
     cout<<"write to 'output.txt' (without comment) : success"<<endl<<endl;
 
