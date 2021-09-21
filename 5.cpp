@@ -14,20 +14,18 @@ int main()
         return -1;
     }
 
-    string s;
-    int lines=0;
+    string line;
+    int lineCount=0;
 
-    while(fin)
+    while(getline(fin,line))
     {
-        getline(fin,s);
-        cout<<s<<endl;
-        lines++;
+        lineCount++;
     }
+    fin.close();
 
-    cout<<"number of lines in 'input.txt' file is : "<<lines<<endl;
+    cout<<"number of lines in 'input.txt' file is : "<<lineCount<<endl;
 
     return 0;
-
 
 }
 
