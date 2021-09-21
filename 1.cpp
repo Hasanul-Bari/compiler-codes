@@ -14,36 +14,30 @@ int main()
         return -1;
     }
 
-    char c;
-    int count=1;
-    bool f=true;
+    char c=fgetc(f1);
+    int Linecount=1;
+    bool isNewline=true;
 
-    while(true)
+    while(c!=EOF)
     {
-        c=fgetc(f1);
-        if(c==EOF)
+        if(isNewline==true)
         {
-            break;
-        }
-
-        if(f==true)
-        {
-            cout<<count<<"  ";
-            f=false;
+            cout<<Linecount<<"  ";
+            isNewline=false;
         }
 
         cout<<c;
 
         if(c=='\n')
         {
-            f=true;
-            count++;
+            isNewline=true;
+            Linecount++;
         }
+
+        c=fgetc(f1);
 
     }
 
 
     return 0;
-
-
 }
