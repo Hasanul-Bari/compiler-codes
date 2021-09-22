@@ -20,7 +20,7 @@ bool isIdentifierValid(string identifier)
     {
 
         //if the character is not an alphabet or a digit or an underscore then invalid
-        if( !(isalpha(identifier[0]) || isdigit(identifier[0]) || identifier[0]=='_') )
+        if( !(isalpha(identifier[i]) || isdigit(identifier[i]) || identifier[i]=='_') )
         {
             return false;
         }
