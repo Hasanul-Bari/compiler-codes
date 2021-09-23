@@ -1,10 +1,9 @@
-#include<bits/stdc++.h>
-
+#include<iostream>
 using namespace std;
 
 int main()
 {
-    char fileName [100];
+    char fileName [200];
     cout<<"Enter the name of the file(with extension) to be read : ";
     cin>>fileName;
 
@@ -14,7 +13,7 @@ int main()
 
     if(f1==NULL)
     {
-        cout<<"Failed to open file 'input.txt'"<<endl;
+        cout<<"Failed to open "<<fileName<<" file"<<endl;
         return -1;
     }
     else
@@ -22,13 +21,30 @@ int main()
         cout<<fileName<<" file opened successfully"<<endl;
     }
 
-    char s[200];
+    char s[1000];
     int lineNumber=1;
+    bool isNewline=true;
 
-    while(fgets(s,200,f1)!=NULL)
+    while(fgets(s,1000,f1)!=NULL)
     {
-        cout<<lineNumber<<"   "<<s;
-        lineNumber++;
+        for(int i=0; s[i]!='\0'; i++)
+        {
+
+            if(isNewline)
+            {
+                cout<<lineNumber<<"   ";
+                isNewline=false;
+            }
+
+            cout<<s[i];
+
+            if(s[i]=='\n')
+            {
+                isNewline=true;
+                lineNumber++;
+            }
+        }
+
     }
 
     fclose(f1);
