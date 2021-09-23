@@ -9,13 +9,13 @@ int main()
     cout<<"Enter the name of the file(with extension) to be read : ";
     cin>>fileName;
 
-    fstream fin;
+    ifstream fin;
 
     fin.open(fileName);
 
     if(fin.fail())
     {
-        cout<<"Failed to open file 'input.txt'"<<endl;
+        cout<<"Failed to open file "<<fileName<<endl;
         return -1;
     }
     else
