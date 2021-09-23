@@ -5,7 +5,7 @@ string rel_op[6]= { "==", "!=", ">=", "<=", ">", "<" };
 string am_op[5]= { "+", "-", "*", "/", "%" };
 
 
-bool isIdentifier(string id)
+bool isValidIdentifier(string id)
 {
 
     if( !(isalpha(id[0]) || id[0]=='_') )
@@ -27,7 +27,7 @@ bool isIdentifier(string id)
 
 }
 
-bool isNumber(string s)
+bool isValidNumber(string s)
 {
     for(int i=0; i<s.length(); i++)
     {
@@ -39,6 +39,19 @@ bool isNumber(string s)
 
     return true;
 }
+
+bool isAllWhitespace(string s)
+{
+    for(char c: s)
+    {
+        if(!isspace(c))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 bool isSingleWord(string s)
 {
@@ -58,18 +71,6 @@ bool isSingleWord(string s)
     return isFound;
 }
 
-bool isAllWhitespace(string s)
-{
-    for(char c: s)
-    {
-        if(!isspace(c))
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
 string getSingleWord(string s)
 {
     stringstream str(s);
@@ -77,6 +78,8 @@ string getSingleWord(string s)
     str>>word;
     return word;
 }
+
+
 
 
 
@@ -90,7 +93,7 @@ bool findWhile(string s)
 }
 
 
-bool validCond(string s)
+bool isValidCondition(string s)
 {
     //cout<<"Inside Condition"<<endl;
     //cout<<s<<endl;
@@ -115,12 +118,12 @@ bool validCond(string s)
 
             //cout<<opd1<<" ** "<<opd2<<endl;
             //cout<<isSingleWord(opd1)<<" -- "<<getSingleWord(opd1)<<endl;
-            if( !(isSingleWord(opd1) && (isIdentifier(getSingleWord(opd1)) || isNumber(getSingleWord(opd1)))  ) )
+            if( !(isSingleWord(opd1) && (isValidIdentifier(getSingleWord(opd1)) || isValidNumber(getSingleWord(opd1)))  ) )
             {
                 return false;
             }
 
-            if( !(isSingleWord(opd2) && (isIdentifier(getSingleWord(opd2)) || isNumber(getSingleWord(opd2))) ) )
+            if( !(isSingleWord(opd2) && (isValidIdentifier(getSingleWord(opd2)) || isValidNumber(getSingleWord(opd2))) ) )
             {
                 return false;
             }
@@ -134,7 +137,7 @@ bool validCond(string s)
 
 }
 
-bool isValidStmt(string s)
+bool isValidStatement(string s)
 {
     //cout<<"Inside statement"<<endl;
     //cout<<s<<endl;
@@ -146,7 +149,7 @@ bool isValidStmt(string s)
         string res=s.substr(0,pos);
         s=s.substr(pos+1);
         //cout<<res<<" "<<s<<endl;
-        if( !(isSingleWord(res) && isIdentifier(getSingleWord(res)) )  )
+        if( !(isSingleWord(res) && isValidIdentifier(getSingleWord(res)) )  )
         {
             return false;
         }
@@ -160,12 +163,12 @@ bool isValidStmt(string s)
                 string opd1=s.substr(0,pos);
                 string opd2=s.substr(pos+1);
 
-                if( !(isSingleWord(opd1) && (isIdentifier(getSingleWord(opd1)) || isNumber(getSingleWord(opd1)))  ) )
+                if( !(isSingleWord(opd1) && (isValidIdentifier(getSingleWord(opd1)) || isValidNumber(getSingleWord(opd1)))  ) )
                 {
                     return false;
                 }
 
-                if( !(isSingleWord(opd2) && (isIdentifier(getSingleWord(opd2)) || isNumber(getSingleWord(opd2))) ) )
+                if( !(isSingleWord(opd2) && (isValidIdentifier(getSingleWord(opd2)) || isValidNumber(getSingleWord(opd2))) ) )
                 {
                     return false;
                 }
@@ -220,7 +223,7 @@ bool isValid(string text)
         left=right.substr(0,pos);
         right=right.substr(pos+1);
 
-        if(!validCond(left))
+        if(!isValidCondition(left))
         {
             return false;
         }
@@ -266,7 +269,7 @@ bool isValid(string text)
         left=right.substr(0,pos);
         right=right.substr(pos+1);
 
-        if(!isValidStmt(left))
+        if(!isValidStatement(left))
         {
             return false;
         }
@@ -301,9 +304,22 @@ bool isValid(string text)
 
 int main()
 {
+    string fileName;
+    cout<<"Enter name of the input text file : ";
+    cin>>fileName;
 
     ifstream fin;
-    fin.open("while.txt");
+    fin.open(fileName);
+
+    if(fin.fail())
+    {
+        cout<<"Failed to open "<<fileName<<" file"<<endl;
+        return -1;
+    }
+    else
+    {
+        cout<<fileName<<" opened successfully"<<endl;
+    }
 
     string line,text;
 
