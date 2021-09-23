@@ -15,7 +15,7 @@ int main()
 
     if(fin.fail())
     {
-        cout<<"Failed to open file 'input.txt'"<<endl;
+        cout<<"Failed to open file "<<fileName<<endl;
         return -1;
     }
     else
@@ -26,24 +26,23 @@ int main()
 
 
 
-    string s;
+    string line;
     int deletion=0;
 
-    bool isSingleLineCmnt=false;
-    bool isMultiLineCmnt=false;
+    bool isSingleLineCmnt=false, isMultiLineCmnt=false;
 
 
 
 
-    while(getline(fin,s))
+    while(getline(fin,line))
     {
 
-        int n=s.length();
+        int length=line.length();
 
         isSingleLineCmnt=false;
 
 
-        for(int i=0; i<n; i++)
+        for(int i=0; i<length; i++)
         {
             if(isSingleLineCmnt)
             {
@@ -52,7 +51,7 @@ int main()
 
             if(isMultiLineCmnt)
             {
-                if(i-1>=0 && s[i-1]=='*' && s[i]=='/')
+                if(i-1>=0 && line[i-1]=='*' && line[i]=='/')
                 {
                     isMultiLineCmnt=false;
                 }
@@ -61,20 +60,20 @@ int main()
             }
 
 
-            if(i+1<n && s[i]=='/' && s[i+1]=='/')
+            if(i+1<length && line[i]=='/' && line[i+1]=='/')
             {
                 isSingleLineCmnt=true;
                 deletion++;
             }
 
-            else if(i+1<n && s[i]=='/' && s[i+1]=='*')
+            else if(i+1<length && line[i]=='/' && line[i+1]=='*')
             {
                 isMultiLineCmnt=true;
                 deletion++;
             }
             else
             {
-                fout<<s[i];
+                fout<<line[i];
             }
         }
         fout<<endl;
@@ -85,12 +84,13 @@ int main()
 
     }
     fin.close();
+    fout.close();
 
 
     cout<<"Delete existing comments : success"<<endl;
     cout<<"write to 'output.txt' (without comment) : success"<<endl<<endl;
 
-    cout<<"Number of Deletion : "<<deletion<<endl;
+    cout<<"Number of Comments Deletion : "<<deletion<<endl;
 
 
 
