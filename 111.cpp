@@ -8,18 +8,21 @@ int main()
 
     f1=fopen("input.txt","r");
 
-    if(f1==NULL)
+    char s[1000];
+
+
+
+    //int count=fread(s,sizeof(char), 1000, f1);
+   // printf("%s",s);
+    //cout<<s<<" ";
+
+    while(fread(s,1, 100, f1)==100)
     {
-        cout<<"Failed to open file 'input.txt'"<<endl;
-        return -1;
+        cout<<s;
     }
 
-    char s[200];
 
-    int count=fread(s,strlen(s)+1, 10, f1);
-
-    cout<<s<<endl;
-    cout<<" ** "<<count<<endl;
+    //cout<<" ** "<<count<<endl;
 
 
 
