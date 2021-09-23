@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    char fileName [100];
+    char fileName [200];
     cout<<"Enter the name of the file(with extension) to be read : ";
     cin>>fileName;
     FILE *f1;
@@ -13,7 +13,7 @@ int main()
 
     if(f1==NULL)
     {
-        cout<<"Failed to open file 'input.txt'"<<endl;
+        cout<<"Failed to open file "<<fileName<<endl;
         return -1;
     }
     else
@@ -46,8 +46,8 @@ int main()
 
     //cout<<characters<<" "<<others<<endl;
 
-    cout<<"number of characters in 'input.txt' file is (without whitespace) : "<<characters<<endl;
-    cout<<"number of characters in 'input.txt' file is (with whitespace) : "<<characters+whitespace<<endl;
+    cout<<"number of characters in "<<fileName<<" file is (without whitespace) : "<<characters<<endl;
+    cout<<"number of characters in "<<fileName<<" file is (with whitespace) : "<<characters+whitespace<<endl;
 
 
     return 0;
