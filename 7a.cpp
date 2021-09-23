@@ -16,7 +16,7 @@ int main()
 
     if(f1==NULL)
     {
-        cout<<"Failed to open file 'input.txt'"<<endl;
+        cout<<"Failed to open file "<<fileName<<endl;
         return -1;
     }
     else
@@ -25,7 +25,7 @@ int main()
     }
 
 
-    int tabs=0,space=0,newlines=0;
+    int tabs=0,newlines=0;
 
 
     char c=fgetc(f1);
