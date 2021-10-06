@@ -1,3 +1,21 @@
+/*
+Problem: Imagine the syntax of a programming language construct such as while-loop --
+
+    while ( condition )
+    begin
+        statement ;
+            :
+    end
+
+    where while, begin, end are keywords; condition can be a single comparision expression
+    (such as x == 10, etc.); and statement is the assignment to a location the result of a single
+    arithmatic operation (eg., a = 5 * b).
+
+    Write a C/C++ program that verifies whether the input follows the above syntax.
+
+*/
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
