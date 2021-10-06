@@ -1,3 +1,8 @@
+/*
+problem: Write a C/C++ program to identify whether a given input line is a comment or not.
+*/
+
+
 #include<iostream>
 using namespace std;
 
